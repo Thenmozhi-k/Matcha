@@ -7,3 +7,29 @@ input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
+.usd-input input {
+  pointer-events: auto;
+}
+
+/* TokenList.css */
+
+.token-list::-webkit-scrollbar {
+  width: 4px; /* Set the scrollbar width */
+}
+
+.token-list::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Background color for scrollbar track */
+}
+
+.token-list::-webkit-scrollbar-thumb {
+  background-color: #888; /* Scrollbar thumb color */
+  border-radius: 10px; /* Rounded corners for scrollbar */
+}
+
+.token-list::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Thumb color on hover */
+}
+
+
+

@@ -6,8 +6,8 @@ export default {
   ],
   theme: {
     extend: {
-      fontFamily: {
-        timmy: ['Timmy', 'sans-serif'],
+       fontFamily: {
+        timmy: ['var(--font-family-body)', 'Helvetica', 'sans-serif'],
       },
       screens: {
         sm: "350px",
