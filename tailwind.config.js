@@ -10,8 +10,8 @@ export default {
         timmy: ['var(--font-family-body)', 'Helvetica', 'sans-serif'],
       },
       screens: {
-        sm: "350px",
-        md: "500px"
+        sm: "450px",
+       
       },
       colors:{
            activeHead: "#17171c",

@@ -37,7 +37,7 @@ export const CustomButton = () => {
                     <button
                       onClick={openConnectModal}
                       type="button"
-                      className="bg-[#17171c] text-[16px] font-[500] border rounded-[1.625rem] shadow-[0_1px_2px_rgba(0,0,0,0.2)] w-full text-white flex items-center justify-center h-12" // Set button to full width
+                      className="bg-[#17171c]  sm:mt-2 sm:text-[16px] font-[500] border rounded-[1.625rem] shadow-[0_1px_2px_rgba(0,0,0,0.2)] w-full text-white flex items-center justify-center h-12  text-[15px]" // Set button to full width
                     >
                       Connect Wallet
                     </button>

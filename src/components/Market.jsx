@@ -61,7 +61,7 @@ const Market = () => {
 
     const SwapSellBuy = () => {
         setShowBuy(!showBuy);
-        setShowSell(!showsell);
+        setShowSell(!showsell); 
     };
 
     const handleKeyPress = (e) => {
@@ -78,23 +78,23 @@ const Market = () => {
         <WagmiProvider config={config}>
             <QueryClientProvider client={queryClient}>
                 <RainbowKitProvider>
-                    <div className="flex justify-center items-center h-screen bg-black">
-                        <div className="bg-white md:h-[500px] border rounded-[1.625rem] md:w-[500px]">
-                            <div className="flex justify-between pl-[1.25rem] py-3 pr-[0.75rem] border-b items-center">
-                                <div className="flex gap-[1.5rem] font-medium text-[17px]">
+                    <div className="flex justify-center items-center h-screen bg-black  p-4">
+                        <div className="bg-white h-[350px]  border rounded-[1.625rem] w-full  sm:h-[500px] sm:w-[500px]">
+                            <div className="flex justify-between pl-[1.25rem] py-1 pr-[0.75rem] border-b items-center sm:py-3">
+                                <div className="flex gap-[1.5rem] font-medium sm:text-[17px] text-xs ">
                                     <button className="text-activeHead">Market</button>
                                     <button className="text-inactiveHead">Limit</button>
                                     <button className="text-inactiveHead">Cross chain</button>
                                 </div>
-                                <div className="w-[40px] h-[36px] flex items-center justify-center">
+                                <div className="sm:w-[40px] sm:h-[36px] flex items-center justify-center w-[30px] h-[26px]">
                                     <LuSettings className="h-4 w-4 text-[#22262a]" />
                                 </div>
                             </div>
 
                             <div>
-                                <div className="px-[1.5rem] py-[1rem] flex flex-col space-y-4">
+                                <div className="px-[1.5rem] sm:py-[1rem] flex flex-col sm:space-y-4 space-y-2 py-[.55rem]">
                                     <div className="flex justify-between items-center ">
-                                        <p className="font-semibold text-[14px] text-sell">Sell</p>
+                                        <p className="font-semibold sm:text-[14px] text-[12px] text-sell">Sell</p>
                                     </div>
                                     {showsell ? <SellSection setShowSearchBar={setShowSearchBar} /> : <BuySection setShowSearchBar={setShowSearchBar} autoShowSecondBuy={autoShowSecondBuy} /> }
 
@@ -103,7 +103,7 @@ const Market = () => {
                                         <input
                                             type="number"
                                             placeholder="0.0"
-                                            className="pr-4 overflow-ellipsis max-w-[75%] text-[32px] font-semibold focus:outline-none"
+                                            className="pr-4 overflow-ellipsis w-[75%] sm:text-[32px] font-semibold focus:outline-none  text-[20px]"
                                             style={{ WebkitAppearance: "none", MozAppearance: "textfield" }}
                                             min={0}
                                             value={sellInputValue}
@@ -112,15 +112,18 @@ const Market = () => {
                                         />
                                         </div>
                                       
-                                      <div className='usd-inputmax-w-[25%] '>
-                                        <span className='text-end text-inactiveHead max-w-[3%]'>$</span>
-                                      <input 
+                                      <div className='usd-input w-[25%] flex   '>
+                                        {/* <div className=''> <span className='text-end text-inactiveHead  sm:text-[15px] text-[10px] '>$</span></div> */}
+                                       <div>
+                                       <input 
                                             type="number"
-                                            className=" text-[15px] font-[400] items-center max-w-[22%]  text-end text-black mt-4 focus:outline-none"
+                                            className=" sm:text-[15px] font-[400] items-center w-full  text-end text-black mt-4 focus:outline-none text-xs"
                                             placeholder={isFocused ? '0' : '0.00'}
                                             onFocus={() => setIsFocused(true)}
                                             onBlur={() => setIsFocused(false)}
                                         />
+                                       </div>
+                                     
                                       </div>
                                         
                                     </div>
@@ -139,9 +142,9 @@ const Market = () => {
                                     </div>
                                 </div>
 
-                                <div className="px-[1.5rem] py-[1rem] flex flex-col space-y-4 -mt-5">
+                                <div className="px-[1.5rem] sm:py-[1rem] flex flex-col sm:space-y-4 -mt-5 space-y-2 py-[.55rem]">
                                     <div className="flex justify-between items-center ">
-                                        <p className="font-semibold text-[14px] text-sell">Buy</p>
+                                        <p className="font-semibold sm:text-[14px] text-[12px] text-sell">Buy</p>
                                     </div>
                                     {showBuy ? <BuySection setShowSearchBar={setShowSearchBar} autoShowSecondBuy={autoShowSecondBuy} /> : <SellSection setShowSearchBar={setShowSearchBar} />}
 
@@ -149,7 +152,7 @@ const Market = () => {
                                         <input
                                             type="number"
                                             placeholder="0.0"
-                                            className="pr-4 overflow-ellipsis max-w-[75%] text-[32px] font-semibold focus:outline-none"
+                                            className="pr-4 overflow-ellipsis max-w-[75%] sm:text-[32px] font-semibold focus:outline-none text-[20px]"
                                             style={{ WebkitAppearance: "none", MozAppearance: "textfield" }}
                                             min={0}
                                             value={buyInputValue}

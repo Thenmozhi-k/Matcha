@@ -15,23 +15,23 @@ const BuySection = ({ setShowSearchBar, autoShowSecondBuy }) => {
     return (
         <div className="flex justify-between">
             <div
-                className="bg-selectTokenbg text-sm font-medium text-white px-3 py-2 rounded-[1.625rem] flex gap-2 cursor-pointer"
+                className="bg-gray-50 border-gray-200 hover:bg-gray-100 border sm:text-base  font-medium text-black sm:px-3 py-1.5 sm:py-2 rounded-[1.625rem] flex gap-2 cursor-pointer text-xs px-2"
                 onClick={() => setShowSearchBar(true)}
             >
-                <img src="https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png" alt="ETH" className="w-5 h-5" />
-                <p>ETH</p>
+                <img src="https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png" alt="ETH" className="sm:w-6 sm:h-6 w-4  h-4" />
+                <p className='text-xs sm:text-base '>ETH</p>
                 <IoIosArrowDown
-                    className="justify-center items-center ml-2 mt-1 text-md"
+                    className="justify-center items-center ml-1 mt-1 text-xs sm:text-base"
                     // onClick={() => setShowSecondBuy(!showSecondBuy)}
                 />
             </div>
             
             {showSecondBuy && (
                <div className="flex justify-end gap-[0.375rem] items-center">
-               <button className='bg-[#f1f2f4] text-[#17171c] text-[14px] font-[500] py-[.30rem] opacity-[0.5] rounded-[1.625rem] border px-[.75rem] border-[#d5d9dd]'>
+               <button className='bg-[#f1f2f4] text-[#17171c] sm:text-[14px] text-xs font-[500] py-[.30rem] opacity-[0.5] rounded-[1.625rem] border px-[.75rem] border-[#d5d9dd]'>
                    50%
                </button>
-               <button className='bg-[#f1f2f4] text-[#17171c] text-[14px] font-[500] py-[.30rem] opacity-[0.5] rounded-[1.625rem] border px-[.75rem] border-[#d5d9dd]'>
+               <button className='bg-[#f1f2f4] text-[#17171c] sm:text-[14px] text-xs font-[500] py-[.30rem] opacity-[0.5] rounded-[1.625rem] border px-[.75rem] border-[#d5d9dd]'>
                    Max
                </button>
            </div>
