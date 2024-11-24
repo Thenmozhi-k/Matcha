@@ -1,14 +1,24 @@
-import React from 'react'
-import SearchBar from './SearchBar'
-import TokenList from './TokenList'
+// import React, { useState } from "react";
+// import BuySection from "./BuySection";
+// import SellTokenList from "./SellTokenList";
 
-const SelectToken = () => {
-  return (
-    <div className='flex justify-center items-center h-screen  '>
-        <SearchBar/>
-       
-    </div>
-  )
-}
+// const SelectToken = () => {
+//   const [selectedToken, setSelectedToken] = useState(null); // Ensure setSelectedToken is defined
 
-export default SelectToken
+//   return (
+//     <div className="p-4">
+//       <h1 className="text-lg font-bold mb-4">Token Selector</h1>
+//       <SellTokenList setSelectedToken={setSelectedToken} /> {/* Pass the function here */}
+//       <div className="mt-6">
+//         <h2 className="text-lg font-semibold mb-2">Buy Section</h2>
+//         <BuySection 
+//           selectedToken={selectedToken} 
+//           setShowSearchBar={() => {}} 
+//           autoShowSecondBuy={false} 
+//         />
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default SelectToken;
