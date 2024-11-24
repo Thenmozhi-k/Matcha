@@ -38,13 +38,12 @@ const Market = () => {
     const [showBuy, setShowBuy] = useState(true);
     const [isFocused, setIsFocused] = useState(false);
     const [autoShowSecondBuy, setAutoShowSecondBuy] = useState(false);
-    
 
     useEffect(() => {
         if (showBuy) {
-            setAutoShowSecondBuy(true); // Show the secondBuy when BuySection is active
+            setAutoShowSecondBuy(false); // Show the secondBuy when BuySection is active
         } else {
-            setAutoShowSecondBuy(false); // Hide it when SellSection is active
+            setAutoShowSecondBuy(true); // Hide it when SellSection is active
         }
     }, [showBuy]);
 
