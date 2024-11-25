@@ -7,7 +7,7 @@ import BuyTokenList from './BuyTokenList';
 
 const BuySearchBar = ({ closeModal }) => {
   return (
-    <div className='flex justify-center items-center  '>
+    <div className='flex justify-center items-center'>
       <div className='bg-white  w-4/5 h-[410px]  sm:h-[450px] sm:w-[450px] border rounded-[1.625rem] sm:py-3 py-2 justify-center overflow-hidden  '>
         <div className='flex gap-2 pl-[1.25rem] pr-[0.75rem] '>
           <div className='border p-2 border-none'><CgSearch className='sm:w-5 sm:h-5 w-4 h-4' /></div>

@@ -6,6 +6,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import SellTokenList from './SellTokenList';
 
 const SellSearchBar = ({ closeModal }) => {
+ 
   return (
     <div className='flex justify-center items-center  '>
       <div className='bg-white  w-4/5 h-[410px]  sm:h-[450px] sm:w-[450px] border rounded-[1.625rem] sm:py-3 py-2 justify-center overflow-hidden  '>
@@ -41,7 +42,9 @@ const SellSearchBar = ({ closeModal }) => {
         
         {/* Token list */}
         <div className=' sm:pt-3'>
-          <SellTokenList />
+          <SellTokenList 
+          
+             />
         </div>
       </div>
     </div>

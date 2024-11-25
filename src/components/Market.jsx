@@ -19,8 +19,8 @@ import {
 import { CustomButton } from './CustomButton';
 import SellSection from './SellSection';
 import BuySection from './BuySection';
-import SellSearchBar from './SellSearchBar'; // Import SellSearchBar
-import BuySearchBar from './BuySearchBar';   // Import BuySearchBar
+import SellSearchBar from './SellSearchBar'; 
+import BuySearchBar from './BuySearchBar';   
 
 const config = getDefaultConfig({
     appName: 'My RainbowKit App',
@@ -32,12 +32,19 @@ const config = getDefaultConfig({
 const Market = () => {
     const [sellInputValue, setSellInputValue] = useState('');
     const [buyInputValue, setBuyInputValue] = useState('');
-    const [showSellSearchBar, setShowSellSearchBar] = useState(false); // For SellSearchBar
-    const [showBuySearchBar, setShowBuySearchBar] = useState(false);   // For BuySearchBar
+    const [showSellSearchBar, setShowSellSearchBar] = useState(false); 
+    const [showBuySearchBar, setShowBuySearchBar] = useState(false);  
     const [showsell, setShowSell] = useState(true);
     const [showBuy, setShowBuy] = useState(true);
     const [isFocused, setIsFocused] = useState(false);
     const [autoShowSecondBuy, setAutoShowSecondBuy] = useState(false);
+
+    const [selectedToken, setSelectedToken] = useState();
+
+    const handleSelectToken = (token) => {
+      setSelectedToken(token);
+    };
+  
 
     useEffect(() => {
         if (showBuy) {
@@ -46,6 +53,8 @@ const Market = () => {
             setAutoShowSecondBuy(true); // Hide it when SellSection is active
         }
     }, [showBuy]);
+
+    
 
     const handleSellInputChange = (e) => {
         const value = e.target.value;
@@ -99,7 +108,7 @@ const Market = () => {
                                     {showsell ? (
                                         <SellSection setShowSearchBar={() => setShowSellSearchBar(true)} />
                                     ) : (
-                                        <BuySection setShowSearchBar={() => setShowBuySearchBar(true)}  autoShowSecondBuy={autoShowSecondBuy} />
+                                        <BuySection setShowSearchBar={() => setShowBuySearchBar(true)}  autoShowSecondBuy={autoShowSecondBuy} selectedToken={selectedToken} />
                                     )}
 
                                     <div className="sell-input mb-[0.5rem] flex justify-between items-center">
@@ -135,7 +144,7 @@ const Market = () => {
                                         <p className="font-semibold sm:text-[14px] text-[12px] text-sell">Buy</p>
                                     </div>
                                     {showBuy ? (
-                                        <BuySection setShowSearchBar={() => setShowBuySearchBar(true)}  autoShowSecondBuy={autoShowSecondBuy} />
+                                        <BuySection setShowSearchBar={() => setShowBuySearchBar(true)}  autoShowSecondBuy={autoShowSecondBuy}  />
                                     ) : (
                                         <SellSection setShowSearchBar={() => setShowSellSearchBar(true)} />
                                     )}
