@@ -88,7 +88,7 @@ const BuySection = ({ autoShowSecondBuy }) => {
                 50%
               </button>
               <button className="bg-[#f1f2f4] text-[#17171c] sm:text-[14px] text-xs font-[500] py-[.30rem] opacity-[0.5] rounded-[1.625rem] border px-[.75rem] border-[#d5d9dd]">
-                Max
+                Ma
               </button>
             </div>
           )}
