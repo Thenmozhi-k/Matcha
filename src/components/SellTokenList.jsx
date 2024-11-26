@@ -20,7 +20,7 @@ const SellTokenList = ({ setSellSelectedToken, setShowSearchBar, closeModal }) =
       try {
         const promises = addresses.map(async (address) => {
           const response = await fetch(
-            `https://api.0x.org/tokens/v1/address/${address}`,
+           ` https://api.0x.org/tokens/v1/address/${address}`,
             {
               headers: {
                 "0x-api-key": "a9e6734f-cd87-44c8-a4b5-a1c75945ae29",
@@ -56,7 +56,7 @@ const SellTokenList = ({ setSellSelectedToken, setShowSearchBar, closeModal }) =
           </div>
           <div className='border p-2 border-none' onClick={closeModal}>
             <IoMdClose className='sm:w-5 sm:h-5 w-4 h-4 cursor-pointer' />
-          </div>
+          </div>  
         </div>
         
         

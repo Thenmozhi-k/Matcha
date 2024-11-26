@@ -21,6 +21,7 @@ import SellSection from './SellSection';
 import BuySection from './BuySection';
 import SellSearchBar from './SellSearchBar'; 
 import BuySearchBar from './BuySearchBar';   
+import axios from "axios";
 
 const config = getDefaultConfig({
     appName: 'My RainbowKit App',
@@ -40,6 +41,7 @@ const Market = () => {
     const [autoShowSecondBuy, setAutoShowSecondBuy] = useState(false);
 
     const [selectedToken, setSelectedToken] = useState();
+    const [swapQuote, setSwapQuote] = useState(null); 
 
     const handleSelectToken = (token) => {
       setSelectedToken(token);
@@ -83,6 +85,55 @@ const Market = () => {
 
     const queryClient = new QueryClient();
 
+    const fetchSwapQuote = async (sellSelectedToken, buySelectedToken, chainId = 8453) => {
+        if (!sellSelectedToken || !buySelectedToken) {
+            console.error("Tokens are not selected.");
+            return;
+        }
+
+        setLoading(true);
+        setError(null);  // Reset error state before fetching new data
+
+        const endpoint = "https://api.0x.org/swap/permit2/quote";
+        const params = {
+            chainId,
+            buyToken: buySelectedToken.address,
+            sellToken: sellSelectedToken.address,
+            sellAmount: sellInputValue * 1e18,  // Assuming 18 decimals
+            taker: "0x9BC9DfcF26c3dA16058Aa604E01Bbe85B9903bbA",
+        };
+        console.log(params);
+        try {
+            const response = await fetch(endpoint + "?" + new URLSearchParams(params), {
+                method: "GET",
+                headers: {
+                    "0x-api-key": "a9e6734f-cd87-44c8-a4b5-a1c75945ae29",
+                    "Content-Type": "application/json",
+                },
+            });
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            const data = await response.json();
+            setSwapQuote(data);
+        } catch (err) {
+            setError(err.message);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        if (sellInputValue > 0 && selectedToken) {
+            console.log(sellInputValue);
+            console.log(selectedToken);
+            fetchSwapQuote(selectedToken, selectedToken);  
+        }
+    }, [sellInputValue, selectedToken]);
+
+   
+    
+
     return (
         <WagmiProvider config={config}>
             <QueryClientProvider client={queryClient}>
@@ -118,10 +169,12 @@ const Market = () => {
                                             className="pr-4 overflow-ellipsis w-[75%] sm:text-[32px] font-semibold focus:outline-none text-[20px]"
                                             min={0}
                                             value={sellInputValue}
-                                            onChange={handleSellInputChange}
+                                            onChange={(e) => setSellInputValue(e.target.value)}
                                             onKeyPress={handleKeyPress}
                                         />
                                     </div>
+                                    
+
                                 </div>
 
                                 {/* Display SellSearchBar */}
@@ -157,6 +210,7 @@ const Market = () => {
                                             min={0}
                                             value={buyInputValue}
                                             onChange={handleBuyInputChange}
+                                            onKeyPress={handleKeyPress}
                                             readOnly
                                         />
                                     </div>
@@ -168,6 +222,7 @@ const Market = () => {
                                         <BuySearchBar closeModal={() => setShowBuySearchBar(false)} />
                                     </div>
                                 )}
+                                 
 
                                 {/* Divider */}
                                 <div className="relative w-full h-[1px] bg-[#f1f2f4]"></div>

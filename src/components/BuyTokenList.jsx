@@ -25,7 +25,7 @@ const BuyTokenList = ({ setBuySelectedToken, setShowSearchBar, closeModal }) => 
       try {
         const promises = addresses.map(async (address) => {
           const response = await fetch(
-            `https://api.0x.org/tokens/v1/address/${address}`,
+           ` https://api.0x.org/tokens/v1/address/${address}`,
             {
               headers: {
                 "0x-api-key": "a9e6734f-cd87-44c8-a4b5-a1c75945ae29",
