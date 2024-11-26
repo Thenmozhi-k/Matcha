@@ -6,7 +6,8 @@ const BuySection = ({ autoShowSecondBuy }) => {
   const [showSecondBuy, setShowSecondBuy] = useState(false);
   const [buySelectedToken, setBuySelectedToken] = useState(null);
   const [showSearchBar, setShowSearchBar] = useState(false);
-
+  
+  
   useEffect(() => {
     const storedToken = localStorage.getItem("buySelectedToken");
     if (storedToken) {
@@ -17,6 +18,7 @@ const BuySection = ({ autoShowSecondBuy }) => {
   useEffect(() => {
     if (buySelectedToken) {
       localStorage.setItem("buySelectedToken", JSON.stringify(buySelectedToken));
+      console.log(buySelectedToken)
     } else {
       localStorage.removeItem("buySelectedToken"); 
     }
