@@ -6,6 +6,7 @@ import { IoMdClose } from "react-icons/io";
 import { IoIosArrowDown } from "react-icons/io";
 
 const addresses = [
+  "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
   "0x0b3e328455c4059EEb9e3f84b5543F74E24e7E1b",
   "0xB1a03EdA10342529bBF8EB700a06C60441fEf25d",
   "0x4ed4E862860beD51a9570b96d89aF5E1B0Efefed",
@@ -15,6 +16,7 @@ const addresses = [
   "0x768BE13e1680b5ebE0024C42c896E3dB59ec0149",
   "0x2Da56AcB9Ea78330f947bD57C54119Debda7AF71",
   "0xA88594D404727625A9437C3f886C7643872296AE",
+
 ];
 
 const BuyTokenList = ({ setBuySelectedToken, setShowSearchBar, closeModal }) => {
@@ -120,7 +122,7 @@ const BuyTokenList = ({ setBuySelectedToken, setShowSearchBar, closeModal }) => 
         <p className="sm:text-sm text-xs text-inactiveHead font-semibold pl-[1.25rem] pr-[0.75rem]">
           Trending
         </p>
-        <div className="h-64 pl-[1.25rem] pr-[0.75rem] overflow-y-auto">
+        <div className="h-64 pl-[1.25rem] pr-[0.75rem] ">
           {trendingTokens.map((token, i) => (
             <div
               key={i}

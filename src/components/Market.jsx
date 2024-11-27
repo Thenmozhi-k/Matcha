@@ -40,6 +40,8 @@ const Market = () => {
     const [isFocused, setIsFocused] = useState(false);
     const [loading, setLoading] = useState(false)
     const [autoShowSecondBuy, setAutoShowSecondBuy] = useState(false);
+    const [autoShowSecondSell, setAutoShowSecondSell] = useState(false);
+
     const [error, setError] = useState(false)
     const [buyToken, setBuyToken] = useState(() => {
       // Retrieve and parse the token from localStorage during initialization
@@ -65,6 +67,15 @@ const Market = () => {
             setAutoShowSecondBuy(true); // Hide it when SellSection is active
         }
     }, [showBuy]);
+
+    useEffect(() => {
+      if (showsell) {
+          setAutoShowSecondSell(true); // Show the secondBuy when BuySection is active
+      } else {
+          setAutoShowSecondSell(false); // Hide it when SellSection is active
+      }
+  }, [showsell]);
+
 
     const handleSellInputChange = (e) => {
       const value = e.target.value;
@@ -111,7 +122,7 @@ const fetchSwapQuote = async (buyToken, sellToken, chainId = 8453) => {
     chainId,
     buyToken: buyToken.address,
     sellToken: sellToken.address,
-    sellAmount: sellInputValue * 1e18, // Assuming 18 decimals
+    sellAmount: sellInputValue * 1e7, // Assuming 18 decimals
     taker: "0x9697Cdc6D7Ae8394Cb33Ad46dcD7C8E820AeE197",
   };
 
@@ -133,6 +144,12 @@ const fetchSwapQuote = async (buyToken, sellToken, chainId = 8453) => {
     const data = await response.json();
     console.log(data);
     setSwapQuote(data);
+
+    if (data && data.buyAmount) {
+      const buyAmount = data.buyAmount; 
+      setBuyInputValue(buyAmount);
+    }
+
   } catch (err) {
     setError(err.message);
   } finally {
@@ -151,6 +168,7 @@ const fetchSwapQuote = async (buyToken, sellToken, chainId = 8453) => {
         }
     }, [sellInputValue, buyToken, sellToken]);
 
+    
    
     
 
@@ -181,6 +199,8 @@ const fetchSwapQuote = async (buyToken, sellToken, chainId = 8453) => {
                     {showsell ? (
                       <SellSection
                         setShowSearchBar={() => setShowSellSearchBar(true)}
+                        autoShowSecondSell={autoShowSecondSell}
+
                       />
                     ) : (
                       <BuySection
@@ -238,6 +258,8 @@ const fetchSwapQuote = async (buyToken, sellToken, chainId = 8453) => {
                     ) : (
                       <SellSection
                         setShowSearchBar={() => setShowSellSearchBar(true)}
+                         autoShowSecondSell={autoShowSecondSell}
+
                       />
                     )}
 
