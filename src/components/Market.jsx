@@ -98,45 +98,48 @@ const Market = () => {
     };
 
     const queryClient = new QueryClient();
+const fetchSwapQuote = async (buyToken, sellToken, chainId = 8453) => {
+  if (!buyToken || !sellToken) {
+    console.error("Tokens are not selected.");
+    return;
+  }
 
-    const fetchSwapQuote = async (buyToken, sellToken, chainId = 8453) => {
-        if (!buyToken || !sellToken) {
-          console.error("Tokens are not selected.");
-          return;
-        }
+  setLoading(true);
+  setError(null); // Reset error state before fetching new data
 
-        setLoading(true);
-        setError(null);  // Reset error state before fetching new data
+  const params = {
+    chainId,
+    buyToken: buyToken.address,
+    sellToken: sellToken.address,
+    sellAmount: sellInputValue * 1e18, // Assuming 18 decimals
+    taker: "0x9697Cdc6D7Ae8394Cb33Ad46dcD7C8E820AeE197",
+  };
 
-        const endpoint = "https://api.0x.org/swap/permit2/quote";
-        const params = {
-          chainId,
-          buyToken: buyToken.address,
-          sellToken: sellToken.address,
-          sellAmount: sellInputValue * 1e18, // Assuming 18 decimals
-          taker: "0x9BC9DfcF26c3dA16058Aa604E01Bbe85B9903bbA",
-        };
-        console.log(params);
-        try {
-            const response = await fetch(endpoint + "?" + new URLSearchParams(params), {
-                method: "GET",
-                headers: {
-                    "0x-api-key": "a9e6734f-cd87-44c8-a4b5-a1c75945ae29",
-                    "Content-Type": "application/json",
-                },
-            });
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            const data = await response.json();
-            console.log(data)
-            setSwapQuote(data);
-        } catch (err) {
-            setError(err.message);
-        } finally {
-            setLoading(false);
-        }
-    };
+  try {
+    const response = await fetch(
+      `http://localhost:3000/api/swap-quote?` + new URLSearchParams(params), // Call your backend API
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log(data);
+    setSwapQuote(data);
+  } catch (err) {
+    setError(err.message);
+  } finally {
+    setLoading(false);
+  }
+};
+
 
     useEffect(() => {
          console.log(sellInputValue);
