@@ -4,6 +4,8 @@ import Market from './components/Market'
 
 
 
+
+
 function App() {
   
 
@@ -12,6 +14,8 @@ function App() {
      <Market/>
      {/* <SelectToken/> */}
      {/* <SearchBar/> */}
+     
+    
     </>
   )
 }
