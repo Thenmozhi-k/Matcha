@@ -184,15 +184,23 @@ useEffect(() => {
   }, [showsell]);
 
 
-    const handleSellInputChange = (e) => {
-      const value = e.target.value;
-
-      // Allow only valid numbers (with a single dot for decimals)
-      const validValue = value.replace(/[^0-9.]/g, "");
-      if (validValue.split(".").length > 2) return; // Prevent multiple decimals
-
-      setSellInputValue(validValue);
-    };
+  const handleSellInputChange = (e) => {
+    const value = e.target.value;
+  
+    // Allow only valid numbers (with a single dot for decimals)
+    const validValue = value.replace(/[^0-9.]/g, "");
+    if (validValue.split(".").length > 2) return;
+  
+    // Update sell input value
+    setSellInputValue(validValue);
+    if(validValue == 0) {
+      setBuyInputValue('');
+    }
+    if (buyToken && sellToken && validValue > 0) {
+      fetchSwapQuote(buyToken, sellToken);
+    }
+  };
+  
 
 
    
@@ -205,9 +213,25 @@ useEffect(() => {
     };
 
     const SwapSellBuy = () => {
-        setShowBuy(!showBuy);
-        setShowSell(!showsell);
+      // Temporary variables to store current state values
+      const tempSellInputValue = sellInputValue;
+      const tempBuyInputValue = buyInputValue;
+      const tempSellToken = sellToken;
+    
+      // Swap input values
+      setSellInputValue(tempBuyInputValue);
+      setBuyInputValue(tempSellInputValue);
+    
+      // Swap tokens
+      setSellToken(buyToken); // Set sell token to current buy token
+      setBuyToken(tempSellToken); // Set buy token to current sell token
+    
+      // Toggle visibility of Sell and Buy sections if needed
+      setShowSell((prev) => !prev);
+      setShowBuy((prev) => !prev);
     };
+    
+    
 
     const handleKeyPress = (e) => {
         if (e.key === '-') {
@@ -253,7 +277,7 @@ const fetchSwapQuote = async (buyToken, sellToken, chainId = 8453) => {
     setSwapQuote(data);
 
     if (data && data.buyAmount) {
-      const buyAmount = data.buyAmount; 
+      const buyAmount = data.buyAmount;
       setBuyInputValue(buyAmount);
     }
 
@@ -276,7 +300,7 @@ const fetchSwapQuote = async (buyToken, sellToken, chainId = 8453) => {
     }, [sellInputValue, buyToken, sellToken]);
 
     
-   
+  
     
 
     return (
@@ -322,8 +346,7 @@ const fetchSwapQuote = async (buyToken, sellToken, chainId = 8453) => {
                         className="pr-4 overflow-ellipsis w-[75%] sm:text-[32px] font-semibold focus:outline-none text-[20px]"
                         min={0}
                         value={sellInputValue}
-                        onChange={(e) => setSellInputValue(e.target.value)}
-                        Change={handleSellInputChange}
+                        onChange={(e) => handleSellInputChange(e)}
                         onKeyPress={handleKeyPress}
                       />
                     </div>
