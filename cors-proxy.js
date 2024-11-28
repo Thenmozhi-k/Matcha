@@ -8,7 +8,7 @@ const PORT = 3000;
 // Enable CORS for all routes
 app.use(cors());
 
-app.get("/api/swap-quote", (req, res) => {
+app.get("/api/swap-quote", (req, res) => {  
   const endpoint = "https://api.0x.org/swap/permit2/quote";
   const query = req.query;
 

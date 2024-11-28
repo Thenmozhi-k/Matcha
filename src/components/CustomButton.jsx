@@ -74,8 +74,8 @@ export const CustomButton = ({ sellToken, sellInput }) => {
               }
               return (
                 <div className="flex flex-col w-full gap-2">
-                  <div className="flex w-full justify-between">
-                    <button
+                  <div className="flex w-full justify-center items-center">
+                    {/* <button
                       onClick={openChainModal}
                       className="flex items-center bg-gray-800 text-white py-2 px-4 rounded-lg"
                       type="button"
@@ -101,7 +101,7 @@ export const CustomButton = ({ sellToken, sellInput }) => {
                         </div>
                       )}
                       {chain.name}
-                    </button>
+                    </button> */}
                     <button
                       onClick={openAccountModal}
                       className="bg-gray-800 text-white py-2 px-4 rounded-lg"
