@@ -367,6 +367,15 @@ const Market = () => {
                 <p className="font-semibold sm:text-[14px] text-[12px] text-sell">
                   Sell
                 </p>
+                <div className="balance-display">
+     
+     {balance !== null ? (
+       <p className='text-sell sm:text-[14px] text-[12px]'>Balance: {parseFloat(balance)} {TokenJsonData?.symbol || "token"} </p>
+     ) : (
+       <p>Loading balance...</p>
+     )}
+   </div>
+
               </div>
               {showsell ? (
                 <SellSection
