@@ -1,17 +1,17 @@
 import { useEffect, useState } from 'react';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 
-export const CustomButton = ({ sellToken, sellInput }) => {
+export const CustomButton = ({ sellToken, sellInput, setShowPlaceOrder }) => {
   const [isMatching, setIsMatching] = useState(false);
   const [isBalanceSufficient, setIsBalanceSufficient] = useState(true);
 
   const handleReviewOrder = () => {
     // Store the selected tokens in localStorage
-    localStorage.setItem("buySelectedToken", JSON.stringify(buyToken));
-    localStorage.setItem("sellSelectedToken", JSON.stringify(sellToken));
-
+    // localStorage.setItem("buySelectedToken", JSON.stringify(buyToken));
+    // localStorage.setItem("sellSelectedToken", JSON.stringify(sellToken));
+  setShowPlaceOrder(true)
     // Navigate to the PlaceOrder page
-    window.location.href = '/src/components/placeorder/'; // Using window.location for redirection
+    // Using window.location for redirection
   };
 
   return (
@@ -25,19 +25,23 @@ export const CustomButton = ({ sellToken, sellInput }) => {
         authenticationStatus,
         mounted,
       }) => {
-        const ready = mounted && authenticationStatus !== 'loading';
+        const ready = mounted && authenticationStatus !== "loading";
         const connected =
           ready &&
           account &&
           chain &&
-          (!authenticationStatus || authenticationStatus === 'authenticated');
+          (!authenticationStatus || authenticationStatus === "authenticated");
 
         useEffect(() => {
           if (connected && account && sellToken) {
-            setIsMatching(account.address.toLowerCase() === sellToken.address?.toLowerCase());
+            setIsMatching(
+              account.address.toLowerCase() === sellToken.address?.toLowerCase()
+            );
           }
           if (connected && account?.balance && sellInput) {
-            const accountBalance = parseFloat(account.balance.replace(/[^\d.-]/g, '')); // Convert balance to number
+            const accountBalance = parseFloat(
+              account.balance.replace(/[^\d.-]/g, "")
+            ); // Convert balance to number
             setIsBalanceSufficient(accountBalance >= sellInput);
           }
         }, [connected, account, sellToken, sellInput]);
@@ -45,11 +49,11 @@ export const CustomButton = ({ sellToken, sellInput }) => {
         return (
           <div
             {...(!ready && {
-              'aria-hidden': true,
+              "aria-hidden": true,
               style: {
                 opacity: 0,
-                pointerEvents: 'none',
-                userSelect: 'none',
+                pointerEvents: "none",
+                userSelect: "none",
               },
             })}
             className="w-full"
@@ -61,12 +65,12 @@ export const CustomButton = ({ sellToken, sellInput }) => {
                     onClick={openConnectModal}
                     type="button"
                     className={`bg-[#17171c] sm:mt-2 sm:text-[16px] font-[500] border rounded-[1.625rem] shadow-[0_1px_2px_rgba(0,0,0,0.2)] w-full flex items-center justify-center h-12 text-[15px] ${
-                      !isBalanceSufficient ? 'text-red-500' : 'text-white'
+                      !isBalanceSufficient ? "text-red-500" : "text-white"
                     }`}
                   >
                     {!isBalanceSufficient
-                      ? 'Insufficient Balance'
-                      : 'Connect Wallet'}
+                      ? "Insufficient Balance"
+                      : "Connect Wallet"}
                   </button>
                 );
               }
@@ -119,7 +123,8 @@ export const CustomButton = ({ sellToken, sellInput }) => {
                       {/* {account.displayName}
                       {account.displayBalance
                         ? ` (${account.displayBalance})`
-                        : ''} */}Review order
+                        : ''} */}
+                      Review order
                     </button>
                   </div>
                   {isMatching ? (
