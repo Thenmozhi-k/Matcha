@@ -300,7 +300,7 @@ const Market = () => {
         buyToken: buyToken.address,
         sellToken: sellToken.address,
         sellAmount: sellInputValue * 1e18, // Assuming 18 decimals
-        taker: "0x9697Cdc6D7Ae8394Cb33Ad46dcD7C8E820AeE197",
+        taker: walletAddress,
     };
 
     try {
