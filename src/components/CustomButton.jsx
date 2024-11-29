@@ -5,6 +5,15 @@ export const CustomButton = ({ sellToken, sellInput }) => {
   const [isMatching, setIsMatching] = useState(false);
   const [isBalanceSufficient, setIsBalanceSufficient] = useState(true);
 
+  const handleReviewOrder = () => {
+    // Store the selected tokens in localStorage
+    localStorage.setItem("buySelectedToken", JSON.stringify(buyToken));
+    localStorage.setItem("sellSelectedToken", JSON.stringify(sellToken));
+
+    // Navigate to the PlaceOrder page
+    window.location.href = '/src/components/placeorder/'; // Using window.location for redirection
+  };
+
   return (
     <ConnectButton.Custom>
       {({
@@ -103,14 +112,14 @@ export const CustomButton = ({ sellToken, sellInput }) => {
                       {chain.name}
                     </button> */}
                     <button
-                      onClick={openAccountModal}
-                      className="bg-gray-800 text-white py-2 px-4 rounded-lg"
+                      onClick={handleReviewOrder}
+                      className="bg-gray-800 text-white py-2 px-4 rounded-full w-full"
                       type="button"
                     >
-                      {account.displayName}
+                      {/* {account.displayName}
                       {account.displayBalance
                         ? ` (${account.displayBalance})`
-                        : ''}
+                        : ''} */}Review order
                     </button>
                   </div>
                   {isMatching ? (

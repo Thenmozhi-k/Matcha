@@ -1,16 +1,29 @@
 import React, { useEffect, useState } from 'react';
+import TransactionCompleted from "../Transaction completed/TransactionCompleted";
+
+
 
 const TransactionPending = () => {
   const [timeLeft, setTimeLeft] = useState(6);
+
+  const [isCompleted, setIsCompleted] = useState(false);
 
   useEffect(() => {
     if (timeLeft > 0) {
       const timer = setInterval(() => {
         setTimeLeft((prev) => prev - 1);
       }, 1000);
+
       return () => clearInterval(timer);
+    } else {
+      setIsCompleted(true); // Mark transaction as complete when countdown ends
     }
   }, [timeLeft]);
+
+  if (isCompleted) {
+    return <TransactionCompleted/>; // Render TransactionCompleted when done
+  }
+
 
   return (
     <div className="flex justify-center items-center h-screen bg-black p-4">

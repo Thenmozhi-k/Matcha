@@ -6,6 +6,7 @@ import { IoMdClose } from "react-icons/io";
 import { IoIosArrowDown } from "react-icons/io";
 
 const addresses = [
+  "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
   "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
   "0x0b3e328455c4059EEb9e3f84b5543F74E24e7E1b",
   "0xB1a03EdA10342529bBF8EB700a06C60441fEf25d",
@@ -99,7 +100,7 @@ const SellTokenList = ({ setSellSelectedToken, setShowSearchBar, closeModal }) =
               }}
             >
               <img
-                src={token.logoURI}
+                src={token.logo}
                 alt={token.name}
                 className="sm:w-[18px] sm:h-[18px] w-4 h-4 rounded-full"
               />

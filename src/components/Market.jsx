@@ -255,7 +255,7 @@ const fetchSwapQuote = async (buyToken, sellToken, chainId = 8453) => {
     buyToken: buyToken.address,
     sellToken: sellToken.address,
     sellAmount: sellInputValue * 1e18, // Assuming 18 decimals
-    taker: "0x9697Cdc6D7Ae8394Cb33Ad46dcD7C8E820AeE197",
+    taker: "0x9BC9DfcF26c3dA16058Aa604E01Bbe85B9903bbA",
   };
 
   try {

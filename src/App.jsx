@@ -1,6 +1,7 @@
 
 import './App.css'
 import Market from './components/Market'
+import PlaceOrder from './components/placeorder/PlaceOrder'
 
 
 
@@ -14,6 +15,7 @@ function App() {
      <Market/>
      {/* <SelectToken/> */}
      {/* <SearchBar/> */}
+     {/* <PlaceOrder/> */}
      
     
     </>
