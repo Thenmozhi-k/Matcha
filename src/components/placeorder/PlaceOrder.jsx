@@ -20,6 +20,7 @@ const PlaceOrder = () => {
   const [seconds, setSeconds] = useState(25); // Default 25 seconds
   const [isTimeout, setIsTimeout] = useState(false); // Track whether we're in the timeout section
   const [isTransactionPending, setIsTransactionPending] = useState(false);
+  const [isWalletDenied, setIsWalletDenied] = useState(false); 
 
 
   useEffect(() => {
