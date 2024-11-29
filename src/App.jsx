@@ -12,14 +12,14 @@ function App() {
 
   return (
     <>
-     <Market/>
-     {/* <SelectToken/> */}
-     {/* <SearchBar/> */}
-     {/* <PlaceOrder/> */}
-     
-    
+      <div className="w-full h-screen">
+        <Market />
+      </div>
+      {/* <SelectToken/> */}
+      {/* <SearchBar/> */}
+      {/* <PlaceOrder/> */}
     </>
-  )
+  );
 }
 
 export default App
