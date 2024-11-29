@@ -5,6 +5,7 @@ import { GoDotFill } from "react-icons/go";
 import { PiDotDuotone } from "react-icons/pi";
 import { LuArrowRightLeft } from "react-icons/lu";
 import TransactionPending from '../transaction pending/TransactionPending';
+import ConfirmDenied from '../order confirm denied/ConfirmDenied';
 
 
 const PlaceOrder = () => {
@@ -89,8 +90,16 @@ const PlaceOrder = () => {
     }
   };
 
+  const handleWalletConnectionDenied = () => {
+    setIsWalletDenied(true); // Set the state to true if the wallet connection is denied
+  };
+
   if (isTransactionPending) {
     return <TransactionPending/>;
+  }
+
+  if (isWalletDenied) {
+    return <ConfirmDenied/>; // Show ConfirmDenied if wallet connection was denied
   }
 
   return (
